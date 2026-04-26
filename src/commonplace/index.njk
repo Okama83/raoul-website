@@ -1,0 +1,28 @@
+---
+layout: layouts/base.njk
+title: Commonplace Book
+---
+<section class="listing">
+  <h1>Commonplace Book</h1>
+  <p class="section-desc">Notes on game design, tools, production pipelines, and career craft.</p>
+
+  {% if collections.posts.length %}
+  <ul class="post-list">
+    {% for post in collections.posts %}
+    <li>
+      <a href="{{ post.url }}">{{ post.data.title }}</a>
+      <time>{{ post.date | dateDisplay }}</time>
+      {% if post.data.tags %}
+      <ul class="tags">
+        {% for tag in post.data.tags %}
+          {% if tag != "post" %}<li>{{ tag }}</li>{% endif %}
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p>Nothing published yet.</p>
+  {% endif %}
+</section>

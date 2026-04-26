@@ -1,0 +1,22 @@
+---
+layout: layouts/base.njk
+title: Vault
+---
+<section class="listing">
+  <h1>Vault</h1>
+  <p class="section-desc">Completed games and released work.</p>
+
+  {% if collections.vault.length %}
+  <ul class="project-list">
+    {% for project in collections.vault | reverse %}
+    <li>
+      <a href="{{ project.url }}">{{ project.data.title }}</a>
+      {% if project.data.year %}<span class="year">{{ project.data.year }}</span>{% endif %}
+      {% if project.data.description %}<p>{{ project.data.description }}</p>{% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p>Nothing here yet.</p>
+  {% endif %}
+</section>

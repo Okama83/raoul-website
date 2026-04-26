@@ -1,0 +1,22 @@
+---
+layout: layouts/base.njk
+title: Lab
+---
+<section class="listing">
+  <h1>Lab</h1>
+  <p class="section-desc">Active projects and works in progress.</p>
+
+  {% if collections.lab.length %}
+  <ul class="project-list">
+    {% for project in collections.lab | reverse %}
+    <li>
+      <a href="{{ project.url }}">{{ project.data.title }}</a>
+      {% if project.data.status %}<span class="status">{{ project.data.status }}</span>{% endif %}
+      {% if project.data.description %}<p>{{ project.data.description }}</p>{% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p>Nothing here yet. Check back soon.</p>
+  {% endif %}
+</section>
