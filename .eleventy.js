@@ -4,6 +4,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(pluginRss);
 
   eleventyConfig.addPassthroughCopy("src/assets");
+  eleventyConfig.ignores.add("src/_templates");
 
   eleventyConfig.addCollection("posts", (api) =>
     api.getFilteredByGlob("src/commonplace/posts/*.md").reverse()

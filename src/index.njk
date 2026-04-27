@@ -1,33 +1,119 @@
 ---
-layout: layouts/base.njk
-title: Home
+layout: layouts/landing.njk
 ---
-<section class="home">
-  <p class="home-name">Raoul Paraschiv</p>
-  <p class="home-tagline">Game designer. Thinking out loud about systems, tools, and craft.</p>
-
-  <div class="home-sections">
-    <div>
-      <a href="/lab/" class="home-section-label">Lab</a>
-      <p class="home-section-desc">Active projects and works in progress.</p>
-    </div>
-    <div>
-      <a href="/vault/" class="home-section-label">Vault</a>
-      <p class="home-section-desc">Completed games and released work.</p>
-    </div>
-    <div>
-      <a href="/commonplace/" class="home-section-label">Commonplace Book</a>
-      <p class="home-section-desc">Notes on game design, tools, pipelines, and the rest.</p>
-      {% if collections.posts.length %}
-      <ul class="recent-posts">
-        {% for post in collections.posts | reverse | slice(0, 3) %}
-          <li>
-            <a href="{{ post.url }}">{{ post.data.title }}</a>
-            <time>{{ post.date | dateDisplay }}</time>
-          </li>
-        {% endfor %}
-      </ul>
-      {% endif %}
+<div class="landing">
+  <div class="landing-inner">
+    <div class="hud-label" id="msg-label"></div>
+    <div class="hud-frame" id="msg-frame">
+      <span class="c-tl"></span>
+      <span class="c-tr"></span>
+      <span class="c-bl"></span>
+      <span class="c-br"></span>
+      <div class="msg-body" id="msg-content"></div>
     </div>
   </div>
-</section>
+
+  <footer class="landing-footer">
+    <span>Raoul Paraschiv</span>
+    <span>Game Designer</span>
+    <span>© 2026</span>
+    <span class="cursor">█</span>
+  </footer>
+</div>
+
+<script>
+const STORAGE_KEY = 'rp_last_msg';
+
+const messages = [
+  {
+    label: 'ALPHA BUILD',
+    html: `
+      <p>This website is in alpha. Expect bugs, missing assets, and the dangerous optimism of a solo developer who <em>"just has a few things left to do."</em></p>
+    `
+  },
+  {
+    label: 'PATCH NOTES',
+    html: `
+      <span class="msg-version">v0.1.0</span>
+      <p>Core systems are in place. Content patch dropping soon.</p>
+      <p><span class="msg-issue-label">Known issue:</span> no content. &nbsp;<span class="msg-issue-label">Workaround:</span> come back later.</p>
+    `
+  },
+  {
+    label: 'CRAFTING MENU',
+    html: `
+      <p>Crafting in progress.</p>
+      <ul class="craft-list">
+        <li><span class="craft-item">Wood</span>    <span class="craft-bar">██████<span class="empty">░░░░</span></span></li>
+        <li><span class="craft-item">Steel</span>   <span class="craft-bar">████<span class="empty">░░░░░░</span></span></li>
+        <li><span class="craft-item">Excuses</span> <span class="craft-bar">██████████</span></li>
+      </ul>
+      <p class="msg-eta">ETA: when it's done.</p>
+    `
+  },
+  {
+    label: 'NPC DIALOGUE',
+    html: `
+      <p class="msg-quote">"You look like someone who knows what good design feels like."</p>
+      <p class="msg-attribution">— An NPC who clearly knows what he's talking about.</p>
+      <p class="msg-namecard">Raoul Paraschiv. Game Designer. Site loading.</p>
+    `
+  },
+  {
+    label: 'SAVE POINT',
+    html: `
+      <p>You've reached a save point. Rest here — something worth playing is being built just ahead.</p>
+      <p>Progress will not be lost.</p>
+    `
+  },
+  {
+    label: 'NEW GAME+',
+    html: `
+      <p>New Game+.</p>
+      <p>All skills carried over. The designer knows what he's doing this time.</p>
+    `
+  },
+  {
+    label: 'ACHIEVEMENT UNLOCKED',
+    html: `
+      <p class="msg-trophy">🏆 <em class="msg-trophy-title">"Found It First"</em></p>
+      <p>You arrived before the site was ready. The game designer notes your initiative. Respect.</p>
+    `
+  },
+  {
+    label: 'LOADING TIP',
+    html: `
+      <p>Good level design teaches without telling you anything.</p>
+      <p>This page is already doing that.</p>
+    `
+  },
+  {
+    label: 'SECRET AREA DISCOVERED',
+    html: `
+      <span class="msg-star">★</span>
+      <p>You weren't supposed to find this yet. Since you're here — Raoul Paraschiv, game designer. You'll want to bookmark this.</p>
+    `
+  },
+  {
+    label: 'SIDE QUEST UNLOCKED',
+    html: `
+      <p class="msg-quest-title">"Meet the Game Designer"</p>
+      <ul class="quest-details">
+        <li><span class="q-label">Reward</span> A collaborator who makes things feel alive.</li>
+        <li><span class="q-label">Recommended level</span> Anyone who cares about craft.</li>
+      </ul>
+    `
+  }
+];
+
+(function () {
+  const last = parseInt(localStorage.getItem(STORAGE_KEY) ?? '-1', 10);
+  const pool = messages.map((_, i) => i).filter(i => i !== last);
+  const idx  = pool[Math.floor(Math.random() * pool.length)];
+  localStorage.setItem(STORAGE_KEY, String(idx));
+
+  const msg = messages[idx];
+  document.getElementById('msg-label').textContent   = msg.label;
+  document.getElementById('msg-content').innerHTML   = msg.html;
+})();
+</script>
