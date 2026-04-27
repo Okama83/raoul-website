@@ -3,25 +3,28 @@ layout: layouts/base.njk
 title: Home
 ---
 <section class="home">
-  <h1>Raoul Paraschiv</h1>
-  <p class="tagline">Game designer. Thinking out loud about systems, tools, and craft.</p>
+  <p class="home-name">Raoul Paraschiv</p>
+  <p class="home-tagline">Game designer. Thinking out loud about systems, tools, and craft.</p>
 
   <div class="home-sections">
     <div>
-      <h2><a href="/lab/">Lab</a></h2>
-      <p>Projects in progress.</p>
+      <a href="/lab/" class="home-section-label">Lab</a>
+      <p class="home-section-desc">Active projects and works in progress.</p>
     </div>
     <div>
-      <h2><a href="/vault/">Vault</a></h2>
-      <p>Completed games and released work.</p>
+      <a href="/vault/" class="home-section-label">Vault</a>
+      <p class="home-section-desc">Completed games and released work.</p>
     </div>
     <div>
-      <h2><a href="/commonplace/">Commonplace Book</a></h2>
-      <p>Notes on game design, tools, pipelines, and the rest.</p>
+      <a href="/commonplace/" class="home-section-label">Commonplace Book</a>
+      <p class="home-section-desc">Notes on game design, tools, pipelines, and the rest.</p>
       {% if collections.posts.length %}
       <ul class="recent-posts">
         {% for post in collections.posts | reverse | slice(0, 3) %}
-          <li><a href="{{ post.url }}">{{ post.data.title }}</a> <span>{{ post.date | dateDisplay }}</span></li>
+          <li>
+            <a href="{{ post.url }}">{{ post.data.title }}</a>
+            <time>{{ post.date | dateDisplay }}</time>
+          </li>
         {% endfor %}
       </ul>
       {% endif %}

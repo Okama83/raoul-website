@@ -9,4 +9,4 @@ I work on [placeholder — add current project or studio]. This site is where I 
 
 The **Lab** is where active projects live. The **Vault** holds completed work. The **Commonplace Book** is where I write — about production pipelines, game systems, design theory, and whatever else I'm working through.
 
-You can reach me at [raoul.paraschiv@gmail.com](mailto:raoul.paraschiv@gmail.com).
+You can reach me at [hello@raoul.ro](mailto:hello@raoul.ro).

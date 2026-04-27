@@ -3,7 +3,7 @@ layout: layouts/page.njk
 title: Contact
 ---
 
-The best way to reach me is by email: [raoul.paraschiv@gmail.com](mailto:raoul.paraschiv@gmail.com)
+The best way to reach me is by email: [hello@raoul.ro](mailto:hello@raoul.ro)
 
 I'm also on:
 
