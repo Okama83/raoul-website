@@ -82,7 +82,7 @@ body::after {
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
-  animation: fadein 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: fadein 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 /* ─── Label ──────────────────────────────────────────────── */
@@ -96,6 +96,7 @@ body::after {
   display: flex;
   align-items: center;
   gap: var(--space-3);
+  animation: label-in 0.35s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both;
 }
 
 .hud-label::before {
@@ -111,6 +112,8 @@ body::after {
   flex: 1;
   height: 1px;
   background: var(--border);
+  transform-origin: left center;
+  animation: line-grow 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
 }
 
 /* ─── HUD Frame ──────────────────────────────────────────── */
@@ -118,6 +121,7 @@ body::after {
   position: relative;
   padding: var(--space-8) var(--space-8);
   background: var(--surface);
+  animation: surface-on 0.45s linear 0.2s both;
 }
 
 .hud-frame .c-tl,
@@ -129,10 +133,10 @@ body::after {
   height: 16px;
 }
 
-.hud-frame .c-tl { top: 0; left: 0;  border-top: 1px solid var(--accent); border-left:  1px solid var(--accent); }
-.hud-frame .c-tr { top: 0; right: 0; border-top: 1px solid var(--accent); border-right: 1px solid var(--accent); }
-.hud-frame .c-bl { bottom: 0; left: 0;  border-bottom: 1px solid var(--accent); border-left:  1px solid var(--accent); }
-.hud-frame .c-br { bottom: 0; right: 0; border-bottom: 1px solid var(--accent); border-right: 1px solid var(--accent); }
+.hud-frame .c-tl { top: 0; left: 0;  border-top: 1px solid var(--accent); border-left:  1px solid var(--accent); transform-origin: top left;     animation: corner-in 0.3s cubic-bezier(0.16, 1, 0.3, 1) 0.28s both; }
+.hud-frame .c-tr { top: 0; right: 0; border-top: 1px solid var(--accent); border-right: 1px solid var(--accent); transform-origin: top right;    animation: corner-in 0.3s cubic-bezier(0.16, 1, 0.3, 1) 0.33s both; }
+.hud-frame .c-bl { bottom: 0; left: 0;  border-bottom: 1px solid var(--accent); border-left:  1px solid var(--accent); transform-origin: bottom left;  animation: corner-in 0.3s cubic-bezier(0.16, 1, 0.3, 1) 0.38s both; }
+.hud-frame .c-br { bottom: 0; right: 0; border-bottom: 1px solid var(--accent); border-right: 1px solid var(--accent); transform-origin: bottom right; animation: corner-in 0.3s cubic-bezier(0.16, 1, 0.3, 1) 0.43s both; }
 
 /* ─── Message body ───────────────────────────────────────── */
 .msg-body {
@@ -140,6 +144,7 @@ body::after {
   font-size: 1rem;
   line-height: 1.7;
   color: var(--fg);
+  animation: scan-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.48s both;
 }
 
 .msg-body p { margin-bottom: var(--space-3); }
@@ -304,8 +309,36 @@ body::after {
 
 /* ─── Animations ─────────────────────────────────────────── */
 @keyframes fadein {
-  from { opacity: 0; transform: translateY(10px); }
+  from { opacity: 0; transform: translateY(8px); }
   to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes label-in {
+  from { opacity: 0; transform: translateX(-8px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes line-grow {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+@keyframes surface-on {
+  0%   { opacity: 0; }
+  12%  { opacity: 0.65; }
+  18%  { opacity: 0.1; }
+  26%  { opacity: 0.8; }
+  100% { opacity: 1; }
+}
+
+@keyframes corner-in {
+  from { transform: scale(0); }
+  to   { transform: scale(1); }
+}
+
+@keyframes scan-in {
+  from { clip-path: inset(0 0 100% 0); }
+  to   { clip-path: inset(0 0 0% 0); }
 }
 
 @keyframes blink {
@@ -322,6 +355,14 @@ body::after {
 
 /* ─── Reduced motion ─────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  .landing-inner { animation: none; }
+  .landing-inner,
+  .hud-label,
+  .hud-label::after,
+  .hud-frame,
+  .hud-frame .c-tl,
+  .hud-frame .c-tr,
+  .hud-frame .c-bl,
+  .hud-frame .c-br,
+  .msg-body { animation: none; }
   .cursor { animation: none; }
 }
