@@ -11,6 +11,7 @@ img { display: block; max-width: 100%; }
   --border:  oklch(88%   0.006 60);
   --surface: oklch(95.5% 0.005 60);
   --accent:  oklch(47%   0.155 25);
+  --amber:   oklch(62%   0.10  75);
 
   /* Fonts */
   --font-display: 'Bricolage Grotesque', system-ui, sans-serif;
@@ -56,6 +57,10 @@ body {
   max-width: var(--max-w);
   margin: 0 auto;
   padding: var(--space-8) var(--space-6) var(--space-16);
+}
+
+main {
+  animation: pagein 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 /* ─── Typography ─────────────────────────────────────────── */
@@ -113,6 +118,7 @@ blockquote {
   color: var(--muted);
   padding: var(--space-4) var(--space-6);
   background: var(--surface);
+  border-left: 3px solid var(--accent);
   margin-bottom: var(--space-4);
 }
 
@@ -154,8 +160,16 @@ nav a {
   color: var(--muted);
   transition: color 120ms ease-out;
 }
-nav a:hover,
-nav a[aria-current="page"] { color: var(--accent); }
+nav a:hover { color: var(--accent); }
+nav a[aria-current="page"] {
+  color: var(--accent);
+}
+nav a[aria-current="page"]::before {
+  content: '// ';
+  font-family: var(--font-mono);
+  font-size: 0.7em;
+  letter-spacing: 0;
+}
 
 /* ─── Footer ─────────────────────────────────────────────── */
 footer {
@@ -165,9 +179,31 @@ footer {
   font-family: var(--font-display);
   font-size: var(--text-xs);
   color: var(--muted);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
 }
-footer a { color: var(--muted); text-decoration: none; }
-footer a:hover { color: var(--accent); }
+
+.footer-identity {
+  font-family: var(--font-mono);
+  color: var(--accent);
+  margin-bottom: 0;
+}
+
+.footer-links {
+  display: flex;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 120ms ease-out;
+}
+.footer-links a:hover { color: var(--accent); }
+
+.footer-copy { color: var(--muted); margin-bottom: 0; }
 
 /* ─── Home ───────────────────────────────────────────────── */
 .home-name {
@@ -233,7 +269,7 @@ h1.section-label {
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--amber);
   display: flex;
   align-items: center;
   gap: var(--space-3);
@@ -243,6 +279,7 @@ h1.section-label {
 h1.section-label::before {
   content: '//';
   font-family: var(--font-mono);
+  color: var(--accent);
   letter-spacing: 0;
   flex-shrink: 0;
 }
@@ -275,10 +312,23 @@ h1.section-label::after {
 .hud-card .c-br { bottom: 0; right: 0; border-bottom: 1px solid var(--accent); border-right: 1px solid var(--accent); }
 
 /* ─── Listings ───────────────────────────────────────────── */
+.listing {
+  max-width: 60rem;
+}
+
 .section-desc {
-  color: var(--muted);
-  font-style: italic;
+  color: var(--fg);
+  font-size: var(--text-sm);
   margin-bottom: var(--space-8);
+  max-width: 56ch;
+}
+
+.empty-state {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--muted);
+  padding: var(--space-8) 0;
+  line-height: 1.8;
 }
 
 .post-list, .project-list { list-style: none; }
@@ -366,7 +416,14 @@ h1.section-label::after {
   .recent-posts li { flex-direction: column; gap: var(--space-1); }
 }
 
+/* ─── Animations ─────────────────────────────────────────── */
+@keyframes pagein {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
 /* ─── Reduced motion ─────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; }
+  main { animation: none; }
 }
