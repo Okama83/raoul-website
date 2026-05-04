@@ -226,6 +226,54 @@ footer a:hover { color: var(--accent); }
 .recent-posts a { text-decoration: none; font-family: var(--font-display); font-weight: 500; }
 .recent-posts a:hover { color: var(--accent); }
 
+/* ─── HUD Accents ────────────────────────────────────────── */
+h1.section-label {
+  font-family: var(--font-display);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-8);
+}
+
+h1.section-label::before {
+  content: '//';
+  font-family: var(--font-mono);
+  letter-spacing: 0;
+  flex-shrink: 0;
+}
+
+h1.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.hud-card {
+  position: relative;
+  padding: var(--space-4) var(--space-6);
+  background: var(--surface);
+}
+
+.hud-card .c-tl,
+.hud-card .c-tr,
+.hud-card .c-bl,
+.hud-card .c-br {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+}
+
+.hud-card .c-tl { top: 0; left: 0;     border-top: 1px solid var(--accent); border-left:   1px solid var(--accent); }
+.hud-card .c-tr { top: 0; right: 0;    border-top: 1px solid var(--accent); border-right:  1px solid var(--accent); }
+.hud-card .c-bl { bottom: 0; left: 0;  border-bottom: 1px solid var(--accent); border-left:  1px solid var(--accent); }
+.hud-card .c-br { bottom: 0; right: 0; border-bottom: 1px solid var(--accent); border-right: 1px solid var(--accent); }
+
 /* ─── Listings ───────────────────────────────────────────── */
 .section-desc {
   color: var(--muted);

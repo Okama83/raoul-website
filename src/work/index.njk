@@ -1,0 +1,25 @@
+---
+layout: layouts/base.njk
+title: Work
+---
+<section class="listing">
+  <h1 class="section-label">Work</h1>
+  <p class="section-desc">Shipped games and design projects.</p>
+
+  {% if collections.work.length %}
+  <ul class="project-list">
+    {% for project in collections.work %}
+    <li>
+      <a href="{{ project.url }}">{{ project.data.title }}</a>
+      <span class="year">{{ project.data.year }}</span>
+      {% if project.data.role or project.data.studio %}
+      <span class="status">{{ project.data.role }}{% if project.data.role and project.data.studio %} · {% endif %}{{ project.data.studio }}</span>
+      {% endif %}
+      {% if project.data.description %}<p>{{ project.data.description }}</p>{% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p>Case studies coming soon.</p>
+  {% endif %}
+</section>

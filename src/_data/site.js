@@ -4,10 +4,10 @@ module.exports = {
   url: "https://www.raoul.ro",
   author: "Raoul Paraschiv",
   nav: [
-    { label: "about", url: "/about/" },
-    { label: "lab", url: "/lab/" },
-    { label: "vault", url: "/vault/" },
-    { label: "commonplace", url: "/commonplace/" },
-    { label: "contact", url: "/contact/" },
+    { label: "work",    url: "/work/" },
+    { label: "lab",     url: "/lab/" },
+    { label: "vault",   url: "/vault/" },
+    { label: "writing", url: "/commonplace/" },
+    { label: "about",   url: "/about/" },
   ],
 };

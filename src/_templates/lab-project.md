@@ -1,18 +1,20 @@
 ---
 layout: layouts/page.njk
-title: "Project Title"
-status: "in progress"
+title: "Experiment Title"
+status: "exploring"
 description: "One sentence shown in the Lab listing."
+tags:
+  - lab
 ---
 
 ## What it is
 
-Brief description of the project — what kind of game, what's interesting about it.
+What the experiment explores — the mechanic, system, or question being tested.
 
 ## Current state
 
-What's done, what's being worked on right now.
+What exists right now. A prototype, a diagram, a playable build — wherever it stands.
 
-## What I'm figuring out
+## Open questions
 
-The open design questions or problems you're actively solving.
+What you're still figuring out. The design problem driving the experiment.

@@ -3,16 +3,17 @@ layout: layouts/base.njk
 title: Vault
 ---
 <section class="listing">
-  <h1>Vault</h1>
-  <p class="section-desc">Completed games and released work.</p>
+  <h1 class="section-label">Vault</h1>
+  <p class="section-desc">Copyright-free game design documents — hosted, annotated, and worth studying.</p>
 
   {% if collections.vault.length %}
   <ul class="project-list">
-    {% for project in collections.vault | reverse %}
+    {% for entry in collections.vault %}
     <li>
-      <a href="{{ project.url }}">{{ project.data.title }}</a>
-      {% if project.data.year %}<span class="year">{{ project.data.year }}</span>{% endif %}
-      {% if project.data.description %}<p>{{ project.data.description }}</p>{% endif %}
+      <a href="{{ entry.url }}">{{ entry.data.title }}</a>
+      {% if entry.data.year %}<span class="year">{{ entry.data.year }}</span>{% endif %}
+      {% if entry.data.game %}<span class="status">{{ entry.data.game }}{% if entry.data.studio %} · {{ entry.data.studio }}{% endif %}</span>{% endif %}
+      {% if entry.data.description %}<p>{{ entry.data.description }}</p>{% endif %}
     </li>
     {% endfor %}
   </ul>

@@ -18,6 +18,10 @@ module.exports = function (eleventyConfig) {
     api.getFilteredByGlob("src/vault/*.md").reverse()
   );
 
+  eleventyConfig.addCollection("work", (api) =>
+    api.getFilteredByGlob("src/work/*.md").reverse()
+  );
+
   eleventyConfig.addFilter("dateDisplay", (date) =>
     new Date(date).toLocaleDateString("en-GB", {
       year: "numeric",
